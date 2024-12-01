@@ -94,8 +94,22 @@ pub mod point3d {
     }
 }
 
+#[allow(dead_code)]
 pub mod blas{
     extern "C" {
+
+        // Level 1 double precision real blas function
+        fn dasum_(n: *const i32, dx: *const f64, incx: *const i32);
+        fn daxpy_(n: *const i32, da: *const f64, dx: *const f64, incx: *const i32, dy: *const f64,
+                  incy: *const i32);
+        fn dcopy_(n: *const i32, dx: *const f64, incx: *const i32, dy: *const f64, incy: *const i32);
+        fn ddot_(n: *const i32, dx: *const f64, incx: *const i32, dy: *const f64, incy: *const i32);
+        fn dnrm2_(n: *const i32, x: *const f64, incx: *const i32);
+        fn dscal_(n: *const i32, da: *const f64, dx: *const f64, incx: *const i32);
+        fn dswap_(n: *const i32, dx: *const f64, incx: *const i32, dy: *const f64, incy: *const i32);
+        fn dtrsv_(uplo: *const u8, trans: *const u8, diag: *const u8, n: *const i32, a: *const f64,
+                  lda: *const i32, x: *const f64, incx: *const i32);
+
         fn dgemm_(transa: *const u8, transb: *const u8, m: *const i32, n: *const i32, k: *const i32, alpha: *const f64,
             a: *const f64, lda: *const i32, b: *const f64, ldb: *const i32, beta: *const f64, c: *mut f64,
             ldc: *const i32);
